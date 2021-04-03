@@ -1,8 +1,9 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
+using std::cout;
 #define tab "\t"
 
-class Point   // тип данных Point
+class Point   // С‚РёРї РґР°РЅРЅС‹С… Point
 {
 	double x;
 	double y;
@@ -31,7 +32,7 @@ public:
 	}
 	Point(double x)
 	{
-		//конструктор с одним параметром создает точку на прямой
+		//РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РѕРґРЅРёРј РїР°СЂР°РјРµС‚СЂРѕРј СЃРѕР·РґР°РµС‚ С‚РѕС‡РєСѓ РЅР° РїСЂСЏРјРѕР№
 		this->x = x;
 		this->y = 0;
 		cout << "Singleargumentconstructor: " << this << endl;
@@ -56,11 +57,41 @@ public:
 	}
 
 	//   Operators
-	void operator=(const Point& other)
+	Point& operator=(const Point& other)
 	{
 		this->x = other.x;
 		this->y = other.y;
 		cout << "CopyAssigment:\t\t" << this << endl;
+		return *this;
+	}
+
+	Point& operator+=(const Point& other)
+	{
+		/*this->x+=other.x;
+		this->y+=other.y;*/
+		this->set_x(this->x + other.x);
+		this->set_y(this->y + other.y);
+		return *this;
+	}
+	Point& operator++()   // Prefix Increment
+	{
+		this->x++;
+		this->y++;
+		return *this;
+	}
+	Point operator++(int)   // Postfix increment
+	{
+		Point old = *this;
+		this->x++;
+		this->y++;
+		return old;
+	}
+
+	Point& operator()(double x, double y)
+	{
+		set_x(x);
+		set_y(y);
+		return *this;
 	}
 
 	// Methods
@@ -70,25 +101,66 @@ public:
 	}
 };
 
+bool operator==(const Point& left, const Point& right)
+{
+	/*if ()
+		return true;
+	else
+		return false;*/
+	return left.get_x() == right.get_x() && left.get_y() == left.get_y();
+}
+
+bool operator!=(const Point& left, const Point& right)
+{
+	return !(left == right);
+}
+
+ostream& operator<<(ostream& os, const Point& obj)
+{
+	os << "X= " << obj.get_x() << tab << "Y= " << obj.get_y();
+	return os;
+}
+
+istream& operator>>(istream& is, Point& obj)
+{
+	double x, y;
+	is >> x >> y;
+	obj.set_x(x);
+	obj.set_y(y);
+	return is;
+}
+
+Point operator+(Point left, Point right)
+{
+	Point result;
+	result.set_x(left.get_x() + right.get_x());
+	result.set_y(left.get_y() + right.get_y());
+	return result;
+}
+
 //#define STRUCT
+//#define CONSTRUCTORS_CHECK
+//#define ASSIGNMENT_CHECK
+//#define STREAMS
 
 void main()
 {
 	setlocale(LC_ALL, "Russian");
 #ifdef STRUCT
 	// type name;
-	int a;//Обявляем переменную 'a' типа 'int'
-	Point A; // обявляем переменную 'A' типа 'Point'
-			 // обявляем обьект структуры 'Point'
-			 // Создаём экземпляр структуры 'point'
+	int a;//РћР±СЏРІР»СЏРµРј РїРµСЂРµРјРµРЅРЅСѓСЋ 'a' С‚РёРїР° 'int'
+	Point A; // РѕР±СЏРІР»СЏРµРј РїРµСЂРµРјРµРЅРЅСѓСЋ 'A' С‚РёРїР° 'Point'
+			 // РѕР±СЏРІР»СЏРµРј РѕР±СЊРµРєС‚ СЃС‚СЂСѓРєС‚СѓСЂС‹ 'Point'
+			 // РЎРѕР·РґР°С‘Рј СЌРєР·РµРјРїР»СЏСЂ СЃС‚СЂСѓРєС‚СѓСЂС‹ 'point'
 	A.x = 2;
 	A.y = 3;
 	cout << A.x << tab << A.y << endl;
 
-	Point* pA = &A; //Создаем указатель на 'Point'
+	Point* pA = &A; //РЎРѕР·РґР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° 'Point'
 	cout << pA->x << tab << pA->y << endl;
 #endif // STRUCT
 
+#ifdef CONSTRUCTORS_CHECK
 	Point A;
 	/*A.set_x(2);
 	A.set_y(3);*/
@@ -105,4 +177,52 @@ void main()
 	Point E;    //Default constructor
 	E = D;     // Copy assigment
 	E.print();
+#endif // CONSTRUCTORS_CHECK
+
+#ifdef ASSIGNMENT_CHECK
+	Point A, B, C;
+	A = B = C = Point(2, 3);
+	A.print();
+	B.print();
+	C.print();
+#endif // ASSIGMENT_CHECK
+
+#ifdef STREAMS
+	int a = 2;
+	int b = 3;
+	int c = a + b;
+
+	Point A(2, 3);
+	Point B(3, 4);
+	//A.print();
+	//B.print();
+	///*Point C = A + B;
+	//C.print();*/
+	///*A += B;
+	//A.print();*/
+	//A++;
+	//A.print();
+
+	cout << A << endl;
+	cout << B << endl;
+
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ С‚РѕС‡РєРё: "; cin >> A;
+	cout << "Р’С‹ РІРІРµР»Рё: " << A << endl;
+#endif // STREAMS
+
+	Point A(2, 3);
+	Point B(3, 4);
+	/*if (A == B)
+	{
+		cout << "РўРѕС‡РєРё СЂР°РІРЅС‹" << endl;
+	}
+	else
+	{
+		cout << "РўРѕС‡РєРё СЂР°Р·РЅС‹Рµ" << endl;
+	}*/
+	cout << (A == A) << endl;
+	cout << !(A == B) << endl;
+
+	A(33, 44);
+	cout << A << endl;
 }
