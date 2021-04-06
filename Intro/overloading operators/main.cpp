@@ -31,7 +31,7 @@ public:
 		cout << "CopyConstructor: " << this << endl;
 	}
 
-	Fraction operator/(const Fraction& other)  //11/4 => 2(3/4)
+	Fraction operator/(const Fraction& other)  //11/4 => 2(3/4) и 2(3/4) => 11/4    - to_proper();	- to_improper();
 	{
 		double value = this->x / other.x;
 		double value_1 = this->x - (int)value * other.x;
@@ -46,7 +46,7 @@ public:
 		double result = other.x;
 		if (value < result)
 		{
-			while (value % value != 0 && result % value != 0)
+			while (value % value != 0 || result % value != 0)
 			{
 				--value;
 			}
