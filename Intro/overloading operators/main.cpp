@@ -83,14 +83,14 @@ public:
 		return *this;
 	}
 
-	Fraction& operator*=(Fraction& other) // Умножение дробей
+	Fraction& operator*=(Fraction& other) 
 	{
 		this->set_x(this->x *other.x);
 		this->set_y(this->y * other.y);
 		return *this;
 	}
 
-	Fraction& operator/=(Fraction& other) // Умножение дробей
+	Fraction& operator/=(Fraction& other) 
 	{
 		this->set_x(this->x * other.y);
 		this->set_y(this->y * other.x);
