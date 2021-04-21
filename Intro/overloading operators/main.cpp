@@ -4,32 +4,53 @@ using std::cin;
 using std::cout;
 using std::endl;
 
+//#define HOME_WORK
+#define TYPE_CONVERSIONS
+
 class Fraction
 {
-	double x;
-	double y;
+	int x;
+	int y;
 public:
-	double get_x()const
+	int get_x()const
 	{
 		return x;
 	}
-	double get_y()const
+	int get_y()const
 	{
 		return y;
 	}
-	void set_x(double x)
+	void set_x(int x)
 	{
 		this->x = x;
 	}
-	void set_y(double y)
+	void set_y(int y)
 	{
 		this->y = y;
+		if (y == 0)throw exception("Zero in denominator");  //Бросаем исключение, с сообщение об ошибке
 	}
-	Fraction(double x = 0, double y = 0)
+	Fraction()
+	{
+		this->x = 0;
+		this->set_y(1);
+		cout << "Constructor0:\t" << this << endl;
+	}
+	explicit Fraction(int x)
 	{
 		this->x = x;
-		this->y = y;
-		cout << "Constructor: " << this << endl;
+		this->y = 1;
+		cout << "Constructor1:\t" << this << endl;
+	}
+
+	Fraction(double decimal)
+	{
+		
+	}
+	Fraction(int x , int y)
+	{
+		this->x = x;
+		this->set_y(y);
+		cout << "Constructor2:\t" << this << endl;
 	}
 	Fraction operator=(Fraction& other)
 	{
@@ -170,6 +191,24 @@ public:
 		return old;
 	}
 
+	// type cast operators:
+	explicit operator int()const
+	{
+		return x/y;
+	}
+
+	explicit operator double()const
+	{
+		double value = (double)this->x / this->y;
+		return value;
+	}
+
+	operator char()const
+	{
+		double value = (double)this->x / this->y;
+		return value;
+	}
+
 	void print()
 	{
 		cout << this->x << "/" << this->y << endl;
@@ -250,6 +289,7 @@ ostream& operator<< (ostream& os, Fraction& obj)
 void main()
 {
 	setlocale(LC_ALL, "Russian");
+#ifdef HOME_WORK
 	Fraction A;
 	A.set_x(12);
 	A.set_y(18);
@@ -261,12 +301,12 @@ void main()
 	cout << "Неправильный дроб: " << B.get_x() << "/" << B.get_y() << endl;
 	B.to_proper(B);
 	B.to_improper(B);
-	Fraction C= A + B;
+	Fraction C = A + B;
 	cout << "Дроб А " << A.get_x() << "/" << A.get_y() << endl;
 	cout << "Дроб B " << B.get_x() << "/" << B.get_y() << endl;
 	cout << "Сумма этих дробов равен: ";
 	C.reduce(C);
-	Fraction D = B-A;
+	Fraction D = B - A;
 	cout << "Разница этих дробов равен: ";
 	D.reduce(D);
 	Fraction E = A * B;
@@ -297,4 +337,38 @@ void main()
 	//cout << (A <= B) << endl;
 	//cin >> A;
 	//cout << A << endl;
+#endif // HOME_WORK
+
+#ifdef TYPE_CONVERSIONS
+	////явное преобразование значения 43 в char:
+	//cout << (char)43 << endl;  //C-like style
+	//cout << (char)44 << endl;  //Functional style
+
+	//// Неявное преобразование:
+	//int a = 2;
+	//double b = 3.4;
+	//cout << a * b << endl;  // Оператор * неявно преобразует переменную "а" в тип double,
+	//						// чтобы вернуть результат double
+
+	//double c = 4;		// От меньшего к большему
+	//int d = c;			// От большего к меньшему, без потери данных
+	//int e = 2.5;		// От большего к меньшему с потерей данных
+
+	//Fraction A(3, 4);
+	//cout << A << endl;
+	//int a = (int)A;
+	//cout << a << endl;
+	//double b = A;
+	//cout << b << endl;
+
+	//Fraction B = (Fraction)3;     // Implicit conversion from 'int' to 'Fraction'
+	//					// Преобразование значения "3" типа "int" во Fraction 
+	//cout << B << endl;  //Это преобразование возможно благодаря конструктору с одним параметром
+
+	//B.to_proper(B);
+	//cout << B << endl;
+	//Fraction D = Fraction(4);  
+	Fraction E = 2.745;
+	cout << E << endl;
+#endif // TYPE_CONVERSIONS
 }
