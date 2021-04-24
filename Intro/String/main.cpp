@@ -27,16 +27,16 @@ public:
 		return str;
 	}
 	//			Constructors:
-	explicit String(int size = 80)
+	explicit String(int size = 80) :size(size), str(new char[size] {})
 	{
-		this->size = size;
-		this->str = new char[size] {};
+		//this->size = size;
+		//this->str = new char[size] {};
 		cout << (size == 80 ? "Default" : "Size") << "Constructor:\t" << this << endl;
 	}
-	String(const char str[])
+	String(const char str[]) :String(strlen(str)+1)
 	{
-		this->size = strlen(str) + 1;
-		this->str = new char[size] {};
+		/*this->size = strlen(str) + 1;
+		this->str = new char[size] {};*/ //Это выполнит первый компютер
 		for (int i = 0; str[i]; i++)
 		{
 			this->str[i] = str[i];
@@ -44,14 +44,14 @@ public:
 		cout << "Constructor:\t\t" << this << endl;
 	}
 
-	String(const String& other)
+	String(const String& other): String (other.str)
 	{
-		this->size = other.size;
+		/*this->size = other.size;
 		this->str = new char[size] {};
 		for (int i = 0; i < size; i++)
 		{
 			this->str[i] = other.str[i];
-		}
+		}*/
 		cout << "CopyConstructor:\t" << this << endl;
 	}
 	String(String&& other)
@@ -111,6 +111,7 @@ String operator+(const String& left, const String& right)
 
 //#define CONSTRUCTORS_CHECK
 //#define ASSIGNMENT_CHAECK
+#define OPERATOR_PLUS_CHECK
 
 void main()
 {
@@ -137,7 +138,7 @@ void main()
 	cout << "str2:" << str2 << endl;
 #endif // ASSIGNMENT_CHAECK
 
-
+#ifdef OPERATOR_PLUS_CHECK
 	String str1 = "Hello";
 	String str2 = "World";
 	cout << delimiter << endl;
@@ -153,5 +154,7 @@ void main()
 	int** ppa = &pa;
 	int*** pppa = &ppa;
 	cout << **ppa << endl;
+#endif // OPERATOR_PLUS_CHECK
 
+	
 }
