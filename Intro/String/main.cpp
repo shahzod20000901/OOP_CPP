@@ -155,6 +155,4 @@ void main()
 	int*** pppa = &ppa;
 	cout << **ppa << endl;
 #endif // OPERATOR_PLUS_CHECK
-
-	
 }
