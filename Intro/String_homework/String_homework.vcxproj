@@ -24,6 +24,7 @@
     <ProjectGuid>{e333d066-11be-4698-8bed-63d98d0db1d4}</ProjectGuid>
     <RootNamespace>Stringhomework</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>String_homework_Matrix</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
