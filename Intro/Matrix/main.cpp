@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 using namespace std;
 using std::cin;
 using std::cout;
@@ -103,7 +103,7 @@ public:
 	{
 		if (this->rows != other.rows || this->cols != other.cols)
 		{
-			cout << "Ðàçìåð ìàòðèöû ðàçíûå!!!!"; 
+			cout << "Ð Ð°Ð·Ð¼ÐµÑ€ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹ Ñ€Ð°Ð·Ð½Ñ‹Ðµ!!!!"; 
 			exit(1);
 		}
 		Matrix local(5, 6);
