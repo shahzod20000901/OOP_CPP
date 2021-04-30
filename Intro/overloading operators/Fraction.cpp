@@ -1,4 +1,4 @@
-#include "Fraction.h"
+п»ї#include "Fraction.h"
 
 int Fraction::get_x()const
 {
@@ -15,7 +15,7 @@ void Fraction::set_x(int x)
 void Fraction::set_y(int y)
 {
 	this->y = y;
-	if (y == 0)throw exception("Zero in denominator");  //Бросаем исключение, с сообщение об ошибке
+	if (y == 0)throw exception("Zero in denominator");  //Р‘СЂРѕСЃР°РµРј РёСЃРєР»СЋС‡РµРЅРёРµ, СЃ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ
 }
 Fraction::Fraction() :x(0), y(1)
 {
@@ -43,7 +43,7 @@ Fraction Fraction::operator=(Fraction& other)
 	return *this;
 }
 
-//1. Арифметические операторы: +, -, *, /;
+//1. РђСЂРёС„РјРµС‚РёС‡РµСЃРєРёРµ РѕРїРµСЂР°С‚РѕСЂС‹: +, -, *, /;
 Fraction Fraction::operator+(Fraction& other)
 {
 	Fraction result;
@@ -51,21 +51,21 @@ Fraction Fraction::operator+(Fraction& other)
 	result.set_y(this->y * other.y);
 	return result;
 }
-Fraction Fraction::operator-(Fraction& other)   //Разница дробов 3/4-2/5=7/20
+Fraction Fraction::operator-(Fraction& other)   //Р Р°Р·РЅРёС†Р° РґСЂРѕР±РѕРІ 3/4-2/5=7/20
 {
 	Fraction result;
 	result.set_x(this->x * other.y - other.x * this->y);
 	result.set_y(this->y * other.y);
 	return result;
 }
-Fraction Fraction::operator*(Fraction& other) // Умножение дробей
+Fraction Fraction::operator*(Fraction& other) // РЈРјРЅРѕР¶РµРЅРёРµ РґСЂРѕР±РµР№
 {
 	Fraction result;
 	result.set_x(this->x * other.x);
 	result.set_y(this->y * other.y);
 	return result;
 }
-Fraction Fraction::operator/(Fraction& other)  //Деление дробей
+Fraction Fraction::operator/(Fraction& other)  //Р”РµР»РµРЅРёРµ РґСЂРѕР±РµР№
 {
 	Fraction result;
 	result.set_x(this->x * other.y);
@@ -73,7 +73,7 @@ Fraction Fraction::operator/(Fraction& other)  //Деление дробей
 	return result;
 }
 
-//2. Составные присваивания: +=, -=, *=, /=;
+//2. РЎРѕСЃС‚Р°РІРЅС‹Рµ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ: +=, -=, *=, /=;
 Fraction& Fraction:: operator+=(Fraction& other)
 {
 	this->set_x(this->x * other.y + other.x * this->y);
@@ -102,7 +102,7 @@ Fraction& Fraction:: operator/=(Fraction& other)
 	return *this;
 }
 
-//	- to_proper();		//Неправильную дробь переводит в правильную: 11/4 => 2(3/4)
+//	- to_proper();		//РќРµРїСЂР°РІРёР»СЊРЅСѓСЋ РґСЂРѕР±СЊ РїРµСЂРµРІРѕРґРёС‚ РІ РїСЂР°РІРёР»СЊРЅСѓСЋ: 11/4 => 2(3/4)
 void Fraction::to_proper(Fraction&)  //11/4 => 2(3/4)
 {
 	double value = this->x / this->y;
@@ -110,7 +110,7 @@ void Fraction::to_proper(Fraction&)  //11/4 => 2(3/4)
 	cout << this->x << "/" << this->y << "=>" << (int)value << "(" << (int)value_1 << "/" << this->y << ")" << endl;
 }
 
-//	- to_improper();	//Переводит правильную дробь в неправильную: 2(3/4) => 11/4
+//	- to_improper();	//РџРµСЂРµРІРѕРґРёС‚ РїСЂР°РІРёР»СЊРЅСѓСЋ РґСЂРѕР±СЊ РІ РЅРµРїСЂР°РІРёР»СЊРЅСѓСЋ: 2(3/4) => 11/4
 void Fraction::to_improper(Fraction&)  // 2(3/4)=>11/4 
 {
 	double value = this->x / this->y;
@@ -118,7 +118,7 @@ void Fraction::to_improper(Fraction&)  // 2(3/4)=>11/4
 	cout << (int)value << "(" << (int)value_1 << "/" << this->y << ")" << "=>" << this->x << "/" << this->y << endl;
 }
 
-//	- reduce();			//Сокращает дробь: 5/10 => 1/2;
+//	- reduce();			//РЎРѕРєСЂР°С‰Р°РµС‚ РґСЂРѕР±СЊ: 5/10 => 1/2;
 void Fraction::reduce(Fraction&)  //  6/8=>3/4
 {
 	double value;
@@ -203,7 +203,7 @@ Fraction::~Fraction()
 }
 
 
-//4. Операторы сравнения: ==, !=, >, <, >=, <=;
+//4. РћРїРµСЂР°С‚РѕСЂС‹ СЃСЂР°РІРЅРµРЅРёСЏ: ==, !=, >, <, >=, <=;
 bool operator==(const Fraction& left, const Fraction& right)
 {
 	return left.get_x() == right.get_x() && left.get_y() == right.get_y();
@@ -254,7 +254,7 @@ bool operator<=(const Fraction& left, const Fraction& right)
 		return false;
 }
 
-//5. Операторы для работы с потоками : << , >>
+//5. РћРїРµСЂР°С‚РѕСЂС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РїРѕС‚РѕРєР°РјРё : << , >>
 istream& operator>>(istream& is, Fraction& obj)
 {
 	double x, y;

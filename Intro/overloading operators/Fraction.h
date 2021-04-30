@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 #include<iostream>
 using namespace std;
 using std::cin;
@@ -9,7 +9,7 @@ using std::endl;
 //#define TYPE_CONVERSIONS
 class Fraction;
 
-//4. ŒÔÂ‡ÚÓ˚ Ò‡‚ÌÂÌËˇ: ==, !=, >, <, >=, <=;
+//4. –û–ø–µ—Ä–∞—Ç–æ—Ä—ã —Å—Ä–∞–≤–Ω–µ–Ω–∏—è: ==, !=, >, <, >=, <=;
 bool operator==(const Fraction& left, const Fraction& right);
 
 bool operator!=(const Fraction& left, const Fraction& right);
@@ -22,7 +22,7 @@ bool operator>=(const Fraction& left, const Fraction& right);
 
 bool operator<=(const Fraction& left, const Fraction& right);
 
-//5. ŒÔÂ‡ÚÓ˚ ‰Îˇ ‡·ÓÚ˚ Ò ÔÓÚÓÍ‡ÏË : << , >>
+//5. –û–ø–µ—Ä–∞—Ç–æ—Ä—ã –¥–ª—è —Ä–∞–±–æ—Ç—ã —Å –ø–æ—Ç–æ–∫–∞–º–∏ : << , >>
 istream& operator>>(istream& is, Fraction& obj);
 
 ostream& operator<< (ostream& os, Fraction& obj);
@@ -42,13 +42,13 @@ public:
 	Fraction(int x, int y);
 	Fraction operator=(Fraction& other);
 
-	//1. ¿ËÙÏÂÚË˜ÂÒÍËÂ ÓÔÂ‡ÚÓ˚: +, -, *, /;
+	//1. –ê—Ä–∏—Ñ–º–µ—Ç–∏—á–µ—Å–∫–∏–µ –æ–ø–µ—Ä–∞—Ç–æ—Ä—ã: +, -, *, /;
 	Fraction operator+(Fraction& other);
 	Fraction operator-(Fraction& other);
 	Fraction operator*(Fraction& other);
 	Fraction operator/(Fraction& other);
 
-	//2. —ÓÒÚ‡‚Ì˚Â ÔËÒ‚‡Ë‚‡ÌËˇ: +=, -=, *=, /=;
+	//2. –°–æ—Å—Ç–∞–≤–Ω—ã–µ –ø—Ä–∏—Å–≤–∞–∏–≤–∞–Ω–∏—è: +=, -=, *=, /=;
 	Fraction& operator+=(Fraction& other);
 
 	Fraction& operator-=(Fraction& other);
@@ -57,13 +57,13 @@ public:
 
 	Fraction& operator/=(Fraction& other);
 
-	//	- to_proper();		//ÕÂÔ‡‚ËÎ¸ÌÛ˛ ‰Ó·¸ ÔÂÂ‚Ó‰ËÚ ‚ Ô‡‚ËÎ¸ÌÛ˛: 11/4 => 2(3/4)
+	//	- to_proper();		//–ù–µ–ø—Ä–∞–≤–∏–ª—å–Ω—É—é –¥—Ä–æ–±—å –ø–µ—Ä–µ–≤–æ–¥–∏—Ç –≤ –ø—Ä–∞–≤–∏–ª—å–Ω—É—é: 11/4 => 2(3/4)
 	void to_proper(Fraction&);
 
-	//	- to_improper();	//œÂÂ‚Ó‰ËÚ Ô‡‚ËÎ¸ÌÛ˛ ‰Ó·¸ ‚ ÌÂÔ‡‚ËÎ¸ÌÛ˛: 2(3/4) => 11/4
+	//	- to_improper();	//–ü–µ—Ä–µ–≤–æ–¥–∏—Ç –ø—Ä–∞–≤–∏–ª—å–Ω—É—é –¥—Ä–æ–±—å –≤ –Ω–µ–ø—Ä–∞–≤–∏–ª—å–Ω—É—é: 2(3/4) => 11/4
 	void to_improper(Fraction&);
 
-	//	- reduce();			//—ÓÍ‡˘‡ÂÚ ‰Ó·¸: 5/10 => 1/2;
+	//	- reduce();			//–°–æ–∫—Ä–∞—â–∞–µ—Ç –¥—Ä–æ–±—å: 5/10 => 1/2;
 	void reduce(Fraction&);
 
 	//3. Increment/Decrement (++/--);  
