@@ -21,7 +21,7 @@ public:
 	{
 		return cols;
 	}
-	T** get_M()const
+	const T** get_M()const
 	{
 		return M;
 	}
@@ -32,15 +32,15 @@ public:
 		this->M = new T* [rows];
 		for (int i = 0; i < cols; i++)
 		{
-			this->M[i] = new T [cols];
+			this->M[i] = new T[cols]{};
 		}
-		for (int i = 0; i < rows; i++)
+		/*for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < cols; j++)
 			{
 				M[i][j] = 0;
 			}
-		}
+		}*/
 		cout << "Default Constructor:\t\t" << this << endl;
 	}
 	Matrix(int rows, int cols)
@@ -50,15 +50,15 @@ public:
 		this->M = new T* [rows];
 		for (int i = 0; i < cols; i++)
 		{
-			this->M[i] = new T[cols];
+			this->M[i] = new T[cols]{};
 		}
-		for (int i = 0; i < rows; i++)
+		/*for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < cols; j++)
 			{
 				M[i][j] = 0;
 			}
-		}
+		}*/
 		cout << "Size Constructor:\t\t" << this << endl;
 	}
 	Matrix(const Matrix& other)
@@ -82,6 +82,10 @@ public:
 	//				operators:
 	Matrix& operator=(const Matrix& other)
 	{
+		/*Matrix A;
+		A = A;*/
+		if (this == &other)return *this;
+		for (int i = 0; i < this->rows; i++)delete[] this->M[i];
 		delete[] this->M;
 		this->rows = other.rows;
 		this->cols = other.cols;
@@ -106,7 +110,7 @@ public:
 			cout << "Размер матрицы разные!!!!"; 
 			exit(1);
 		}
-		Matrix local(5, 6);
+		Matrix local(rows, cols);
 		for (int i = 0; i < rows; i++)
 		{
 			for (int j = 0; j < cols; j++)
@@ -124,6 +128,8 @@ public:
 
 	~Matrix()
 	{
+		for (int i = 0; i < this->rows; i++)
+			delete[] this->M[i];
 		delete[]this->M;
 		cout << "Destructor:\t\t\t" << this << endl;
 	}
@@ -178,3 +184,23 @@ void main()
 	M4.print();
 	cout << delimiter;
 }
+
+
+/*TODO:
+1. Разделить класс Fraction на файлы. Сделать это в ветке fraction_separated;
+2. Создать проект Academy, в которм реализовать классы Student, Teacher и Graduate (Дипломник)
+   Подумать, как сюда применить наследование.
+
+DONE:
+1. В новом проекте реализовать класс String, и все необходимые методы в этом классе;
+2. В класс String добавить оператор [], и с его помощию упростить оператор +
+3. В класс String добавить MoveAssignment;
+4. Для класса String перегрузить операторы сравнения;
+----------------------------------------------
+Реадизовать класс Matrix, описывающий матрицу, 
+и обеспечивающий все операции над матрицами:
+-determinant()
+-operator+
+-operator-
+-operator*
+*/
