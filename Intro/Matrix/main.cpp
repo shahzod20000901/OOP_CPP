@@ -34,13 +34,6 @@ public:
 		{
 			this->M[i] = new T[cols]{};
 		}
-		/*for (int i = 0; i < rows; i++)
-		{
-			for (int j = 0; j < cols; j++)
-			{
-				M[i][j] = 0;
-			}
-		}*/
 		cout << "Default Constructor:\t\t" << this << endl;
 	}
 	Matrix(int rows, int cols)
@@ -52,13 +45,6 @@ public:
 		{
 			this->M[i] = new T[cols]{};
 		}
-		/*for (int i = 0; i < rows; i++)
-		{
-			for (int j = 0; j < cols; j++)
-			{
-				M[i][j] = 0;
-			}
-		}*/
 		cout << "Size Constructor:\t\t" << this << endl;
 	}
 	Matrix(const Matrix& other)
@@ -82,8 +68,6 @@ public:
 	//				operators:
 	Matrix& operator=(const Matrix& other)
 	{
-		/*Matrix A;
-		A = A;*/
 		if (this == &other)return *this;
 		for (int i = 0; i < this->rows; i++)delete[] this->M[i];
 		delete[] this->M;
